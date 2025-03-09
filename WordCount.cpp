@@ -250,6 +250,9 @@ void WordCount::addAllWords(std::string text) {
 	stringstream ss(text);
 	string word;
 	while (ss >> word) {
-		incrWordCount(word);
+		word = makeValidWord(word); 
+		if (!word.empty()) { 
+			incrWordCount(word);
+		}
 	}
 }
