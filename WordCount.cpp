@@ -218,13 +218,14 @@ void WordCount::dumpWordsSortedByWord(std::ostream &out) const {
 		}
 	}
 	sort(words.begin(), words.end(), [](const pair<string, int> &a, const pair<string, int> &b) {
-		return a.first > b.first;
+		return a.first < b.first;  
 	});
 
 	for (const auto &entry : words) {
 		out << entry.first << "," << entry.second << "\n";
 	}
 }
+
 
 void WordCount::dumpWordsSortedByOccurence(std::ostream &out) const {
 	vector<pair<string, int>> words;
@@ -232,18 +233,19 @@ void WordCount::dumpWordsSortedByOccurence(std::ostream &out) const {
 		for (const auto &entry : table[i]) {
 			words.push_back(entry);
 		}
-		sort(words.begin(), words.end(), [](const pair<string, int> &a, const pair<string, int> &b) {
+	}
+	sort(words.begin(), words.end(), [](const pair<string, int> &a, const pair<string, int> &b) {
 		if (a.second != b.second) {
-			return a.second < b.second;
+			return a.second > b.second;  
 		}
-		return a.first < b.first;
+		return a.first < b.first; 
 	});
 
 	for (const auto &entry : words) {
 		out << entry.first << "," << entry.second << "\n";
 	}
 }
-}
+
 void WordCount::addAllWords(std::string text) {
 	stringstream ss(text);
 	string word;
